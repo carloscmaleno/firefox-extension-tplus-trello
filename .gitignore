@@ -1,0 +1,7 @@
+#ignore IDE
+.idea
+
+#ignore builds
+@tplus-for-trello*
+trackplus_pluggin_for_trello-*
+
