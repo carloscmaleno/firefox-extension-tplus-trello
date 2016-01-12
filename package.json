@@ -1,7 +1,7 @@
 {
   "title": "Trackplus Pluggin for Trello",
   "name": "tplus-for-trello",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Add Trackplus support for links on Trello",
   "main": "index.js",
   "author": "Carlos Coronado",
