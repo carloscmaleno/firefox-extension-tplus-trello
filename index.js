@@ -9,7 +9,7 @@ var pageMod = require("sdk/page-mod");
 // It will run a script whenever a ".org" URL is loaded
 // The script replaces the page contents with a message
 pageMod.PageMod({
-    include: ["http://localhost/*", "https://trello.com/b/*"],
+    include: "https://trello.com/b/*",
     contentScriptFile: [
         data.url("./js/jquery-1.12.0.min.js"),
         data.url("./js/functions.js")
@@ -18,10 +18,6 @@ pageMod.PageMod({
     onAttach: function (worker) {
 
         worker.port.emit("getImageIcon", data.url('./img/icon_badge.ico'));
-
-        worker.port.on("log_message", function (message) {
-            console.log(message);
-        });
     }
 
 });
