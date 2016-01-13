@@ -2,6 +2,6 @@
 .idea
 
 #ignore builds
-@tplus-for-trello*
-trackplus_pluggin_for_trello-*
+@track-plus-for-trello*
+track-plus_pluggin_for_trello-*
 
