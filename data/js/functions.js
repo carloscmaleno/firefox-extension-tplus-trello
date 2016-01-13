@@ -79,12 +79,13 @@ var TP_TRELLO = (function () {
 
         var img = document.createElement("img");
         img.setAttribute("src", image_url);
-        img.appendChild(document.createTextNode("Track+"));
 
         var a = document.createElement("a");
+        a.className = 'button-link';
         a.setAttribute("target", "_blank");
         a.setAttribute("href", url + id);
         a.appendChild(img);
+        a.appendChild(document.createTextNode("  Track+"));
 
 
         document.getElementsByClassName('window-sidebar')[0]
