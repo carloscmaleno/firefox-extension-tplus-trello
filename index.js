@@ -4,20 +4,19 @@ var data = require("sdk/self").data;
 // Import the page-mod API
 var pageMod = require("sdk/page-mod");
 
+// Get Preferences
+var preferences = require("sdk/simple-prefs").prefs;
 
 // Create a page-mod
-// It will run a script whenever a ".org" URL is loaded
-// The script replaces the page contents with a message
 pageMod.PageMod({
-    include: "https://trello.com/b/*",
+    include: ["https://trello.com/b/*", 'http://localhost/*'],
     contentScriptFile: [
         data.url("./js/jquery-1.12.0.min.js"),
         data.url("./js/functions.js")
     ],
-    contentStyleFile: data.url('./css/style.css'),
-    onAttach: function (worker) {
-
-        worker.port.emit("getImageIcon", data.url('./img/icon_badge.ico'));
-    }
-
+    contentScriptOptions: {
+        image_url: data.url('./img/icon_badge.ico'),
+        track_plus_url: preferences.track_plus_url
+    },
+    attachTo: ["top"]
 });

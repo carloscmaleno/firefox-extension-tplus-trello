@@ -2,10 +2,19 @@
  * Created by carlos on 8/01/16.
  */
 
+//set preferences
+var image_url = self.options.image_url;
+var track_plus_url = self.options.track_plus_url;
+
+//addon
 var TP_TRELLO = (function ($) {
 
     var image_url = '';
-    var url = 'http://trackplus.laviniainteractiva.com/track/printItem.action?key=';
+    var url = '';
+
+    var changeUrl = function(new_url){
+        image_url = new_url;
+    };
 
     var replaceWithBox = function () {
 
@@ -24,8 +33,9 @@ var TP_TRELLO = (function ($) {
         });
     };
 
-    var init = function (image) {
+    var init = function (image, tp_url) {
         image_url = image;
+        url = tp_url;
         replaceWithBox();
     };
 
@@ -38,7 +48,8 @@ var TP_TRELLO = (function ($) {
     // ==================
     return {
         init: init,
-        showLinkButton: showLinkButton
+        showLinkButton: showLinkButton,
+        changeUrl : changeUrl
     }
 })($);
 
@@ -46,10 +57,7 @@ var TP_TRELLO = (function ($) {
 $(document).ready(function () {
 
     console.log('run');
-
-    self.port.on("getImageIcon", function (image) {
-        TP_TRELLO.init(image);
-    });
+    TP_TRELLO.init(image_url, track_plus_url);
 
 
     $('.list-card-title').click(function () {
