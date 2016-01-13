@@ -11,7 +11,6 @@ var preferences = require("sdk/simple-prefs").prefs;
 pageMod.PageMod({
     include: ["https://trello.com/b/*", 'http://localhost/*'],
     contentScriptFile: [
-        data.url("./js/jquery-1.12.0.min.js"),
         data.url("./js/functions.js")
     ],
     contentScriptOptions: {
