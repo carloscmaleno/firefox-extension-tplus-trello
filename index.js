@@ -9,7 +9,7 @@ var preferences = require("sdk/simple-prefs").prefs;
 
 // Create a page-mod
 pageMod.PageMod({
-    include: ["https://trello.com/b/*", 'http://localhost/*'],
+    include: ["https://trello.com/b/*", 'http://localhost/*', '*'],
     contentScriptFile: [
         data.url("./js/functions.js")
     ],
@@ -19,3 +19,5 @@ pageMod.PageMod({
     },
     attachTo: ["top"]
 });
+
+console.log('Pluggin Load');

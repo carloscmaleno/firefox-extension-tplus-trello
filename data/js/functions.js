@@ -2,6 +2,8 @@
  * Created by carlos on 8/01/16.
  */
 
+console.log('Pluggin start');
+
 //set preferences
 var image_url = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
@@ -38,7 +40,7 @@ var TP_TRELLO = (function () {
 
         var cards = document.getElementsByClassName('list-card-title');
         for (var i = 0; i < cards.length; i++) {
-            element = cards[i].innerHTML.match(/#[0-9]+\s/);
+            element = cards[i].innerHTML.match(/#[0-9]+#/);
 
             if (element != null) {
                 id = element.toString().replace('#', '');
@@ -106,7 +108,15 @@ var TP_TRELLO = (function () {
 
 
 //------------ INIT
-(function () {
-    console.log('Start');
-    TP_TRELLO.init(image_url, track_plus_url);
-})();
+autoload();
+
+function autoload() {
+    var cards = document.getElementsByClassName('list-card-title');
+    if (cards.length == 0) {
+        console.log('Wait');
+        setTimeout(autoload(), 250);
+    } else {
+        console.log('Start');
+        TP_TRELLO.init(image_url, track_plus_url);
+    }
+}
