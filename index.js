@@ -9,15 +9,14 @@ var preferences = require("sdk/simple-prefs").prefs;
 
 // Create a page-mod
 pageMod.PageMod({
-    include: ["https://trello.com/b/*", 'http://localhost/*', '*'],
+    include: ["https://trello.com/b/*", 'http://localhost/*'],
     contentScriptFile: [
-        data.url("./js/functions.js")
+        data.url("js/functions.js")
     ],
     contentScriptOptions: {
         image_url: data.url('./img/icon_badge.ico'),
         track_plus_url: preferences.track_plus_url
-    },
-    attachTo: ["top"]
+    }
 });
 
 console.log('Pluggin Load');
