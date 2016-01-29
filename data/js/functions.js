@@ -37,18 +37,12 @@ var TP_TRELLO = (function () {
 
     var addBox = function (card) {
         console.log('Task: Addbox');
-
         //check if the card has icon.
-        if (card.className.indexOf('track-plus-card') != -1) {   // <------ Añade de forma un poco al azar. Controlar donde pone la clase
-            console.log('Task: Addbox has class');
-            return false;
-        }
-        console.log('Task: Addbox Passed');
 
         element = card.innerHTML.match(/#[0-9]+#/);
 
         if (element != null) {
-            console.log('Task: Addbox Do');
+            console.log('Task: Addbox do on '+card.className);
             id = element.toString().replace('#', '');
 
             var node = document.createElement("div");
@@ -67,7 +61,7 @@ var TP_TRELLO = (function () {
             card.parentElement.getElementsByClassName("badges")[0].appendChild(node);
 
             card.dataset.tpt_id = id;
-            card.className += 'track-plus-card'
+            card.className += ' track-plus-card'
         }
     };
 
@@ -76,7 +70,9 @@ var TP_TRELLO = (function () {
 
         var cards = document.getElementsByClassName('list-card-title');
         for (var i = 0; i < cards.length; i++) {
-            addBox(cards[i]);
+            if (cards[i].className.indexOf('track-plus-card') == -1) {
+                addBox(cards[i]);
+            }
         }
         addClickEvent();
         addListerer();
@@ -115,22 +111,9 @@ var TP_TRELLO = (function () {
     var addListerer = function () {
         console.log('Task: Listener');
 
-        // select the target node
-        var target = document.querySelector('.list-cards');
-
-        // create an observer instance
-        var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                target = mutation.target;
-                addBox(target);
-            });
-        });
-
-        // configuration of the observer:
-        var config = {attributes: true, childList: true, characterData: true, subtree: true};
-
-        // pass in the target node, as well as the observer options
-        observer.observe(target, config);
+        setTimeout(function(){
+            replaceWithBox();
+        }, 2000);
     };
 
     // ==================
