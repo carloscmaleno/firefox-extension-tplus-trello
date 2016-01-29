@@ -18,64 +18,59 @@ var TP_TRELLO = (function () {
         image_url = new_url;
     };
 
-    var addClickEvent = function () {
+    var addClickEvent = function (card) {
         console.log('Task: ClickEvent');
-        var cards = document.getElementsByClassName('list-card-title');
 
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].addEventListener('click', function () {
-                id = this.dataset.tpt_id;
+        card.addEventListener('click', function () {
 
-                console.log(id);
-                setTimeout(function () {
-                    TP_TRELLO.showLinkButton(id)   // <------ PETA cuando arrastras una tarjeta, lo interpreta como un click normal
-                }, 500);
+            var id = card.dataset.tpt_id;
+            setTimeout(function () {
+                TP_TRELLO.showLinkButton(id)   // <------ PETA cuando arrastras una tarjeta, lo interpreta como un click normal
+            }, 500);
 
-            }, false);
-        }
+        }, false);
+
     };
 
     var addBox = function (card) {
-        console.log('Task: Addbox');
+        //console.log('Task: Addbox');
         //check if the card has icon.
 
-        element = card.innerHTML.match(/#[0-9]+#/);
+        console.log('Task: Addbox do on ' + card.className);
+        var id = card.toString().replace('#', '');
+        id = id.replace('#', '');
 
-        if (element != null) {
-            console.log('Task: Addbox do on '+card.className);
-            id = element.toString().replace('#', '');
 
-            var node = document.createElement("div");
-            node.className = 'badge is-icon-only tpt-badge';
+        var node = document.createElement("div");
+        node.className = 'badge is-icon-only tpt-badge';
 
-            var a = document.createElement("a");
-            a.setAttribute("target", "_blank");
-            a.setAttribute("href", url + id);
+        var a = document.createElement("a");
+        a.setAttribute("target", "_blank");
+        a.setAttribute("href", url + id);
 
-            var img = document.createElement("img");
-            img.setAttribute("src", image_url);
-            img.setAttribute("title", "Go to Track+");
+        var img = document.createElement("img");
+        img.setAttribute("src", image_url);
+        img.setAttribute("title", "Go to Track+");
 
-            a.appendChild(img);
-            node.appendChild(a);
-            card.parentElement.getElementsByClassName("badges")[0].appendChild(node);
+        a.appendChild(img);
+        node.appendChild(a);
+        card.parentElement.getElementsByClassName("badges")[0].appendChild(node);
 
-            card.dataset.tpt_id = id;
-            card.className += ' track-plus-card'
-        }
+        card.dataset.tpt_id = id;
+        card.className += ' track-plus-card';
     };
 
     var replaceWithBox = function () {
-        console.log('Task: Replace');
+        //console.log('Task: Replace');
 
         var cards = document.getElementsByClassName('list-card-title');
         for (var i = 0; i < cards.length; i++) {
-            if (cards[i].className.indexOf('track-plus-card') == -1) {
+            if ((cards[i].className.indexOf('track-plus-card') == -1) && (cards[i].innerHTML.match(/#[0-9]+#/))) {
                 addBox(cards[i]);
+                addClickEvent(cards[i]);
             }
         }
-        addClickEvent();
-        addListerer();
+        addListener();
     };
 
     var init = function (image, tp_url) {
@@ -108,10 +103,10 @@ var TP_TRELLO = (function () {
             .appendChild(a);
     };
 
-    var addListerer = function () {
+    var addListener = function () {
         console.log('Task: Listener');
 
-        setTimeout(function(){
+        setTimeout(function () {
             replaceWithBox();
         }, 2000);
     };

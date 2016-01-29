@@ -2,6 +2,5 @@
 .idea
 
 #ignore builds
-@track-plus-for-trello*
-track-plus_pluggin_for_trello-*
+*.xpi
 
