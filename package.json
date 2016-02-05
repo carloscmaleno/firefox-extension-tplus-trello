@@ -19,6 +19,27 @@
       "description": "Put here your final Track+ Task URL, like: http://your.trackplus.domain/track/printItem.action?key=",
       "type": "string",
       "value": ""
+    },
+    {
+      "name": "track_plus_pattern",
+      "type": "menulist",
+      "title": "Choose how search ID into cards",
+      "description": "(Need restart)",
+      "value": 0,
+      "options": [
+        {
+          "value": "0",
+          "label": "All numbers in cards (separate with blankspaces): 12345"
+        },
+        {
+          "value": "1",
+          "label": "The ID start with '#': #12345"
+        },
+        {
+          "value": "2",
+          "label": "The ID start and end with '#': #12345#"
+        }
+      ]
     }
   ]
 }

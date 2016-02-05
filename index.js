@@ -15,7 +15,8 @@ pageMod.PageMod({
     ],
     contentScriptOptions: {
         image_url: data.url('./img/icon_badge.ico'),
-        track_plus_url: preferences.track_plus_url
+        track_plus_url: preferences.track_plus_url,
+        track_plus_pattern : preferences.track_plus_pattern
     }
 });
 

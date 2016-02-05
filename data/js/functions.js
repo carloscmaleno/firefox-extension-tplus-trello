@@ -5,14 +5,16 @@
 console.log('Pluggin start');
 
 //set preferences
-var image_url = self.options.image_url;
+var track_plus_image = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
-
+var track_plus_pattern = self.options.track_plus_pattern;
+console.log(track_plus_pattern);
 //addon
 var TP_TRELLO = (function () {
 
     var image_url = '';
     var url = '';
+    var pattern = /\d/;
 
     var changeUrl = function (new_url) {
         image_url = new_url;
@@ -25,7 +27,7 @@ var TP_TRELLO = (function () {
 
             var id = card.dataset.tpt_id;
             setTimeout(function () {
-                TP_TRELLO.showLinkButton(id)   // <------ PETA cuando arrastras una tarjeta, lo interpreta como un click normal
+                TP_TRELLO.showLinkButton(id);   // <------ PETA cuando arrastras una tarjeta, lo interpreta como un click normal
             }, 500);
 
         }, false);
@@ -65,7 +67,7 @@ var TP_TRELLO = (function () {
 
         var cards = document.getElementsByClassName('list-card-title');
         for (var i = 0; i < cards.length; i++) {
-            if ((cards[i].className.indexOf('track-plus-card') == -1) && (cards[i].innerHTML.match(/#[0-9]+#/))) {
+            if ((cards[i].className.indexOf('track-plus-card') == -1) && (cards[i].innerHTML.match(pattern))) {
                 addBox(cards[i]);
                 addClickEvent(cards[i]);
             }
@@ -73,11 +75,27 @@ var TP_TRELLO = (function () {
         addListener();
     };
 
-    var init = function (image, tp_url) {
+    var init = function (image, tp_url, option_pattern) {
         console.log('Task: Init');
 
         image_url = image;
         url = tp_url;
+        switch (option_pattern) {
+
+            case 1:
+                pattern = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
+                break;
+            case 2:
+                pattern = /#[0-9]+#/;
+                break;
+
+            default:
+                pattern = /\d{2,}/;
+                break;
+        }
+
+        console.log(pattern.toString());
+
         replaceWithBox();
 
         console.log('init complete');
@@ -132,6 +150,6 @@ function autoload() {
         setTimeout(autoload(), 500);
     } else {
         console.log('Start');
-        TP_TRELLO.init(image_url, track_plus_url);
+        TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern);
     }
 }
