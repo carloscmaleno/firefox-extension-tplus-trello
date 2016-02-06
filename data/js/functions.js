@@ -13,15 +13,30 @@ var track_plus_pattern = self.options.track_plus_pattern;
 //addon
 var TP_TRELLO = (function () {
 
+    /** @var Link to image */
     var image_url = '';
+
+    /** @var URL to Track+ */
     var url = '';
+
+    /** @var Pattern to find Track+'s numbers */
     var pattern = /\d/;
+
+    /** @var Indicate Pattern option*/
     var pattern_option = 0;
 
+    /**
+     * Change URL to Track+
+     * @param new_url
+     */
     var changeUrl = function (new_url) {
         image_url = new_url;
     };
 
+    /**
+     * Attach event when click on a Card to show Pop-up
+     * @param card
+     */
     var addClickEvent = function (card) {
         console.log('Task: ClickEvent');
 
@@ -36,14 +51,15 @@ var TP_TRELLO = (function () {
 
     };
 
+    /**
+     * Add Track+'s Icon on a title Card
+     * @param card
+     */
     var addBox = function (card) {
         //console.log('Task: Addbox');
-        //check if the card has icon.
 
-        console.log('Task: Addbox do on ' + card.className);
         var id = card.toString().replace('#', '');
         id = id.replace('#', '');
-
 
         var node = document.createElement("div");
         node.className = 'badge is-icon-only tpt-badge';
@@ -64,6 +80,9 @@ var TP_TRELLO = (function () {
         card.className += ' track-plus-card';
     };
 
+    /**
+     * Find all cards and add icon + click event.
+     */
     var replaceWithBox = function () {
         //console.log('Task: Replace');
 
@@ -82,6 +101,12 @@ var TP_TRELLO = (function () {
         addListener();
     };
 
+    /**
+     * INIT Application
+     * @param image
+     * @param tp_url
+     * @param option_pattern
+     */
     var init = function (image, tp_url, option_pattern) {
         console.log('Task: Init');
 
@@ -108,6 +133,10 @@ var TP_TRELLO = (function () {
         console.log('init complete');
     };
 
+    /**
+     * Show button in Pop-up to go Track+ when click on a Card
+     * @param id
+     */
     var showLinkButton = function (id) {
         console.log('Task: showLink');
 
@@ -128,6 +157,9 @@ var TP_TRELLO = (function () {
             .appendChild(a);
     };
 
+    /**
+     * Waiting to new cards for add Icon
+     */
     var addListener = function () {
         console.log('Task: Listener');
 
