@@ -128,6 +128,7 @@ var TP_TRELLO = (function () {
                 break;
         }
 
+        addStatus();
         replaceWithBox();
 
         console.log('init complete');
@@ -166,6 +167,28 @@ var TP_TRELLO = (function () {
         setTimeout(function () {
             replaceWithBox();
         }, 2000);
+    };
+
+    /**
+     * Add status icon + link to your Track+
+     */
+    var addStatus = function () {
+        var toolbar = document.getElementsByClassName('board-header-btns')[0];
+        var regexp = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\?]+)/igm;
+
+        var img = document.createElement("img");
+        img.setAttribute("src", image_url);
+        img.setAttribute('title', 'Track+ active');
+        img.setAttribute('height', '14');
+        img.className = 'board-header-btn-icon icon-sm';
+
+        var a = document.createElement("a");
+        a.className = 'board-header-btn';
+        a.setAttribute("target", "_blank");
+        a.setAttribute("href", regexp.exec(url)[0]);
+
+        a.appendChild(img);
+        toolbar.appendChild(a);
     };
 
     // ==================
