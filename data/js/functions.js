@@ -186,7 +186,9 @@ var TP_TRELLO = (function () {
         var a = document.createElement("a");
         a.className = 'board-header-btn';
         a.setAttribute("target", "_blank");
-        a.setAttribute("href", regexp.exec(url)[0]);
+        if (url.match(regexp)) {
+            a.setAttribute("href", regexp.exec(url)[0]);
+        }
 
         a.appendChild(img);
         toolbar.appendChild(a);
@@ -210,7 +212,9 @@ function autoload() {
     var cards = document.getElementsByClassName('list-card-title');
     if (cards.length == 0) {
         console.log('Wait');
-        setTimeout(autoload(), 500);
+        setTimeout(function () {
+            autoload();
+        }, 500);
     } else {
         console.log('Start');
         TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern);
