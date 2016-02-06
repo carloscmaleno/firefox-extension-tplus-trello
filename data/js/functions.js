@@ -8,13 +8,15 @@ console.log('Pluggin start');
 var track_plus_image = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
 var track_plus_pattern = self.options.track_plus_pattern;
-console.log(track_plus_pattern);
+
+
 //addon
 var TP_TRELLO = (function () {
 
     var image_url = '';
     var url = '';
     var pattern = /\d/;
+    var pattern_option = 0;
 
     var changeUrl = function (new_url) {
         image_url = new_url;
@@ -66,8 +68,13 @@ var TP_TRELLO = (function () {
         //console.log('Task: Replace');
 
         var cards = document.getElementsByClassName('list-card-title');
+
         for (var i = 0; i < cards.length; i++) {
-            if ((cards[i].className.indexOf('track-plus-card') == -1) && (cards[i].innerHTML.match(pattern))) {
+            var text = cards[i].innerHTML;
+            var span_remove = cards[i].getElementsByTagName('span')[0].innerHTML;
+            text = text.replace(span_remove, "");
+
+            if ((cards[i].className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
                 addBox(cards[i]);
                 addClickEvent(cards[i]);
             }
@@ -80,6 +87,8 @@ var TP_TRELLO = (function () {
 
         image_url = image;
         url = tp_url;
+        pattern_option = option_pattern;
+
         switch (option_pattern) {
 
             case 1:
@@ -93,8 +102,6 @@ var TP_TRELLO = (function () {
                 pattern = /\d{2,}/;
                 break;
         }
-
-        console.log(pattern.toString());
 
         replaceWithBox();
 
