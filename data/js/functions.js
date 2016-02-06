@@ -54,12 +54,10 @@ var TP_TRELLO = (function () {
     /**
      * Add Track+'s Icon on a title Card
      * @param card
+     * @param id Track+ ID
      */
-    var addBox = function (card) {
+    var addBox = function (card, id) {
         //console.log('Task: Addbox');
-
-        var id = card.toString().replace('#', '');
-        id = id.replace('#', '');
 
         var node = document.createElement("div");
         node.className = 'badge is-icon-only tpt-badge';
@@ -94,7 +92,10 @@ var TP_TRELLO = (function () {
             text = text.replace(span_remove, "");
 
             if ((cards[i].className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
-                addBox(cards[i]);
+                var id = pattern.exec(text)[0];
+                id = id.replace('#', '');
+                id = id.replace('#', '');
+                addBox(cards[i], id);
                 addClickEvent(cards[i]);
             }
         }
