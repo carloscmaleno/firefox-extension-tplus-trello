@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Track+ for Trello - Options</title></head>
+<body>
+<p>
+    Your Track+ URL:
+    <input type="text" id="track_plus_url"/>
+    <br/>
+    <small>Put here your final Track+ Task URL, like: http://your.trackplus.domain/track/printItem.action?key=</small>
+</p>
+<p>
+    How search Track+ numbers:
+    <select id="track_plus_pattern">
+        <option value="0">All numbers in cards (separate with blankspaces): 12345</option>
+        <option value="1">The ID start with '#': #12345</option>
+        <option value="2">The ID start and end with '#': #12345#</option>
+    </select>
+</p>
+<div id="status" style="padding:5px; background-color:green;text-align: center; display: none; color:#fff">
+    <span>Saved!!</span>
+</div>
+<p>
+    <button id="save">Save</button>
+</p>
+
+<script src="data/js/options.js"></script>
+</body>
+</html>
