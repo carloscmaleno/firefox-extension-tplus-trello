@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "tplus-trello",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helper to work with Track+ and Trello",
-  "icons": {"300": "data/img/log.png"},
+  "icons": {"300": "images/logo.png"},
   "content_scripts": [
     {
       "matches": ["https://trello.com/b/*"],
@@ -11,7 +11,7 @@
     }
   ],
   "browser_action": {
-    "default_icon": "data/img/logo.png"
+    "default_icon": "images/logo.png"
   },
   "homepage_url": "http://github.com/carloscmaleno",
   "options_page": "options.html",
