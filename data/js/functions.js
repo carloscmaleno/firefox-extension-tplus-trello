@@ -6,18 +6,19 @@ console.log('Pluggin start');
 
 //set preferences
 var track_plus_image = chrome.extension.getURL("data/img/icon_badge.ico");
-var track_plus_url = '';
-var track_plus_pattern = '';
-console.log(localStorage["tplus"]);
-/*
+var track_plus_url;
+var track_plus_pattern;
+var wait = true;
+
 chrome.storage.sync.get({
     track_plus_url: '',
     track_plus_pattern: 0
-}, function(items) {
+}, function (items) {
     track_plus_url = items.track_plus_url;
     track_plus_pattern = items.track_plus_pattern;
+    wait = false;
 });
-*/
+
 //addon
 var TP_TRELLO = (function () {
 
@@ -117,7 +118,7 @@ var TP_TRELLO = (function () {
      * @param option_pattern
      */
     var init = function (image, tp_url, option_pattern) {
-        console.log('Task: Init');
+        console.log('Task: Init '+ option_pattern);
 
         image_url = image;
         url = tp_url;
@@ -125,10 +126,10 @@ var TP_TRELLO = (function () {
 
         switch (option_pattern) {
 
-            case 1:
+            case '1':
                 pattern = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
                 break;
-            case 2:
+            case '2':
                 pattern = /#[0-9]+#/;
                 break;
 
@@ -218,7 +219,7 @@ autoload();
 
 function autoload() {
     var cards = document.getElementsByClassName('list-card-title');
-    if (cards.length == 0) {
+    if (cards.length == 0 || wait) {
         console.log('Wait');
         setTimeout(function () {
             autoload();

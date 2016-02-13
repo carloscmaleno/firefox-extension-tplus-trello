@@ -10,7 +10,7 @@ function save_options() {
         track_plus_url: url,
         track_plus_pattern: pattern
     }, function () {
-        localStorage["tplus"] = { 'url' : url, 'pattern' : pattern};
+        localStorage["tplus"] = {'url': url, 'pattern': pattern};
         var status = document.getElementById('status');
         status.style.display = 'block';
         setTimeout(function () {
