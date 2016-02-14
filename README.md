@@ -19,12 +19,12 @@ After:
 
 ![After](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171045.png)
 
-![After pop-up](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171047.png)
+![After pop-up](https://addons.cdn.mozilla.net/user-media/previews/full/171/171047.png)
 
 Configuration:
 
-![configuration](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171048.png)
+![configuration](https://addons.cdn.mozilla.net/user-media/previews/full/171/171048.png)
 
 
 ----------
-## [Invite me to a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
+## [if you liked, invite me a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
