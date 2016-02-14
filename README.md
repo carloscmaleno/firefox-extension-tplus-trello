@@ -11,15 +11,18 @@ If you want to change how the add-on search all Track+'s numbers, you can go to 
 ----------
 Screenshots
 -------------
-Examble before installing the add-on
+Examble before installing the add-on:
+
 ![before](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171046.png)
 
 After:
+
 ![After](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171045.png)
 
 ![After pop-up](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171047.png)
 
 Configuration:
+
 ![configuration](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171048.png)
 
 
