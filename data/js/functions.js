@@ -134,7 +134,7 @@ var TP_TRELLO = (function () {
                 break;
 
             default:
-                pattern = /\d{2,}/;
+                pattern = /\d{2,}(?!.*\))/;
                 break;
         }
 
