@@ -25,6 +25,9 @@ Configuration:
 
 ![configuration](https://addons.cdn.mozilla.net/user-media/previews/full/171/171048.png)
 
+# Release History
+* 2016-04-16 - Ignore numbers into parenthesis ([#1](https://github.com/carloscmaleno/firefox-extension-tplus-trello/issues/1))
+* 2016-01-08 - First stable version 
 
 ----------
 ## [if you liked, invite me a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
