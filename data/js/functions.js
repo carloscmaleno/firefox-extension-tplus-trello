@@ -255,15 +255,15 @@ var TP_TRELLO = (function () {
             var counter = list[key].getElementsByClassName('track-plus-counter');
 
             if (counter.length > 0) {
-                counter[0].innerHTML = cards_count.length;
-
-            } else {
-                var span = document.createElement('span');
-                span.className = 'list-header-extras-subscribe red track-plus-counter';
-                span.appendChild(document.createTextNode(cards_count.length));
-
-                title.appendChild(span);
+                counter[0].parentNode.removeChild(counter[0]);
             }
+
+            var span = document.createElement('span');
+            span.className = 'list-header-extras-subscribe red track-plus-counter';
+            span.appendChild(document.createTextNode(cards_count.length));
+
+            title.appendChild(span);
+
         }
 
 
