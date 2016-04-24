@@ -130,11 +130,16 @@ var TP_TRELLO = (function () {
             console.log('Task: Replace');
 
         var cards = document.getElementsByClassName('list-card-title');
+        var are_new = false;
 
         for (var i = 0; i < cards.length; i++) {
             var text = cards[i].innerHTML;
-            var span_remove = cards[i].getElementsByTagName('span')[0].innerHTML;
-            text = text.replace(span_remove, "");
+            var span_remove = cards[i].getElementsByClassName('card-short-id');
+
+            //remove text: Nº xxx
+            if (span_remove.length > 0) { //skip if are new
+                text = text.replace(span_remove[0].innerHTML, "");
+            }
 
             if ((cards[i].className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
                 var id = pattern.exec(text)[0];
@@ -142,8 +147,15 @@ var TP_TRELLO = (function () {
                 id = id.replace('#', '');
                 addBox(cards[i], id);
                 addClickEvent(cards[i]);
+
+                are_new = true;
             }
         }
+
+        if (are_new) {
+            addLabelCountCards();
+        }
+
         addListener();
     };
 
@@ -229,6 +241,32 @@ var TP_TRELLO = (function () {
 
         a.appendChild(img);
         toolbar.appendChild(a);
+    };
+
+    var addLabelCountCards = function () {
+
+        if (debug)
+            console.log('Task: LabelCount');
+
+        var list = document.getElementsByClassName('list');
+        for (var key = 0; key < list.length; key++) {
+            var cards_count = list[key].getElementsByClassName('track-plus-card');
+            var title = list[key].getElementsByClassName('list-header-extras')[0];
+            var counter = list[key].getElementsByClassName('track-plus-counter');
+
+            if (counter.length > 0) {
+                counter[0].innerHTML = cards_count.length;
+
+            } else {
+                var span = document.createElement('span');
+                span.className = 'list-header-extras-subscribe red track-plus-counter';
+                span.appendChild(document.createTextNode(cards_count.length));
+
+                title.appendChild(span);
+            }
+        }
+
+
     };
 
     // ==================

@@ -13,6 +13,9 @@ pageMod.PageMod({
     contentScriptFile: [
         data.url("js/functions.js")
     ],
+    contentStyleFile: [
+        data.url("css/style.css")
+    ],
     contentScriptOptions: {
         image_url: data.url('./img/icon_badge.ico'),
         track_plus_url: preferences.track_plus_url,
