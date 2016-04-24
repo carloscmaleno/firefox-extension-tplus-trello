@@ -8,7 +8,49 @@ console.log('Pluggin start');
 var track_plus_image = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
 var track_plus_pattern = self.options.track_plus_pattern;
+var debug = false;
 
+
+var TP_TRELLO_SETTINGS = (function () {
+
+    var NUMBER_START_WITH = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
+    var NUMBER_START_END_WITH = /#[0-9]+#/;
+    var NUMBER_ALL = /\d{2,}(?!\d*\))/;
+
+    var getExpression = function (option) {
+
+        switch (option) {
+            case 1:
+                pattern = NUMBER_START_WITH;
+                break;
+            case 2:
+                pattern = NUMBER_START_END_WITH;
+                break;
+
+            default:
+                pattern = NUMBER_ALL;
+                break;
+        }
+
+        return pattern;
+    };
+
+    var getAllExpression = function () {
+        return {
+            0: NUMBER_ALL,
+            1: NUMBER_START_WITH,
+            2: NUMBER_START_END_WITH
+        };
+    };
+
+    // ==================
+    // PUBLIC METHODS
+    // ==================
+    return {
+        getExpression: getExpression,
+        getAllExpression: getAllExpression
+    }
+})();
 
 //addon
 var TP_TRELLO = (function () {
@@ -38,7 +80,8 @@ var TP_TRELLO = (function () {
      * @param card
      */
     var addClickEvent = function (card) {
-        console.log('Task: ClickEvent');
+        if (debug)
+            console.log('Task: ClickEvent');
 
         card.addEventListener('click', function () {
 
@@ -57,7 +100,8 @@ var TP_TRELLO = (function () {
      * @param id Track+ ID
      */
     var addBox = function (card, id) {
-        //console.log('Task: Addbox');
+        if (debug)
+            console.log('Task: Addbox');
 
         var node = document.createElement("div");
         node.className = 'badge is-icon-only tpt-badge';
@@ -82,7 +126,8 @@ var TP_TRELLO = (function () {
      * Find all cards and add icon + click event.
      */
     var replaceWithBox = function () {
-        //console.log('Task: Replace');
+        if (debug)
+            console.log('Task: Replace');
 
         var cards = document.getElementsByClassName('list-card-title');
 
@@ -109,30 +154,20 @@ var TP_TRELLO = (function () {
      * @param option_pattern
      */
     var init = function (image, tp_url, option_pattern) {
-        console.log('Task: Init');
+        if (debug)
+            console.log('Task: Init');
 
         image_url = image;
         url = tp_url;
         pattern_option = option_pattern;
 
-        switch (option_pattern) {
-
-            case 1:
-                pattern = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
-                break;
-            case 2:
-                pattern = /#[0-9]+#/;
-                break;
-
-            default:
-                pattern = /\d{2,}(?!.*\))/;
-                break;
-        }
+        pattern = TP_TRELLO_SETTINGS.getExpression(option_pattern);
 
         addStatus();
         replaceWithBox();
 
-        console.log('init complete');
+        if (debug)
+            console.log('init complete');
     };
 
     /**
@@ -140,7 +175,8 @@ var TP_TRELLO = (function () {
      * @param id
      */
     var showLinkButton = function (id) {
-        console.log('Task: showLink');
+        if (debug)
+            console.log('Task: showLink');
 
         var img = document.createElement("img");
         img.setAttribute("src", image_url);
@@ -163,7 +199,8 @@ var TP_TRELLO = (function () {
      * Waiting to new cards for add Icon
      */
     var addListener = function () {
-        console.log('Task: Listener');
+        if (debug)
+            console.log('Task: Listener');
 
         setTimeout(function () {
             replaceWithBox();
@@ -211,12 +248,14 @@ autoload();
 function autoload() {
     var cards = document.getElementsByClassName('list-card-title');
     if (cards.length == 0) {
-        console.log('Wait');
+        if (debug)
+            console.log('Wait');
         setTimeout(function () {
             autoload();
         }, 500);
     } else {
-        console.log('Start');
+        if (debug)
+            console.log('Start');
         TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern);
     }
 }
