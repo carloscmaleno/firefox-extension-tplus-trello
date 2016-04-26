@@ -8,6 +8,7 @@ console.log('Pluggin start');
 var track_plus_image = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
 var track_plus_pattern = self.options.track_plus_pattern;
+var track_plus_new_version = self.options.track_plus_new_version;
 var debug = false;
 
 
@@ -164,8 +165,9 @@ var TP_TRELLO = (function () {
      * @param image
      * @param tp_url
      * @param option_pattern
+     * @param new_version
      */
-    var init = function (image, tp_url, option_pattern) {
+    var init = function (image, tp_url, option_pattern, new_version) {
         if (debug)
             console.log('Task: Init');
 
@@ -180,6 +182,11 @@ var TP_TRELLO = (function () {
 
         if (debug)
             console.log('init complete');
+
+        console.log('asdf:' + new_version);
+        if (new_version) {
+            showPopUpNewVersion();
+        }
     };
 
     /**
@@ -263,10 +270,48 @@ var TP_TRELLO = (function () {
             span.appendChild(document.createTextNode(cards_count.length));
 
             title.appendChild(span);
-
         }
 
 
+    };
+
+    var showPopUpNewVersion = function () {
+        if (debug)
+            console.log('Task: Show popup');
+        var modal = document.createElement('div');
+        modal.className = "modal";
+        var title = document.createElement('div');
+        title.className = 'modal_title';
+        title.appendChild(document.createTextNode('New version has been installed'));
+        var close = document.createElement('div');
+        close.className = 'modal_close';
+        close.appendChild(document.createTextNode('X'));
+        var message = document.createElement('div');
+        message.className = 'modal_text';
+        message.appendChild(document.createTextNode('Thanks for use it.'));
+
+        var p = document.createElement('p');
+        p.appendChild(document.createTextNode('The plugin Track+ for Trello has been update to the last version.'));
+        message.appendChild(p);
+        p = document.createElement('p');
+        p.appendChild(document.createTextNode('If you want to know the new features and bug fixed visit the '));
+        var a = document.createElement('a');
+        a.setAttribute('target', '_blank');
+        a.setAttribute('href', 'https://github.com/carloscmaleno/firefox-extension-tplus-trello#-track-pluggin-for-trello');
+        a.appendChild(document.createTextNode('project webpage'));
+        p.appendChild(a);
+        p.appendChild(document.createTextNode('.'));
+
+        message.appendChild(p);
+
+        modal.appendChild(title);
+        modal.appendChild(close);
+        modal.appendChild(message);
+
+        modal.addEventListener('click', function () {
+            document.getElementsByClassName('modal')[0].className += "hide";
+        });
+        document.getElementsByTagName('body')[0].appendChild(modal);
     };
 
     // ==================
@@ -275,7 +320,8 @@ var TP_TRELLO = (function () {
     return {
         init: init,
         showLinkButton: showLinkButton,
-        changeUrl: changeUrl
+        changeUrl: changeUrl,
+        showPopUpNewVersion: showPopUpNewVersion
     }
 })();
 
@@ -294,6 +340,7 @@ function autoload() {
     } else {
         if (debug)
             console.log('Start');
-        TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern);
+
+        TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern, track_plus_new_version);
     }
 }

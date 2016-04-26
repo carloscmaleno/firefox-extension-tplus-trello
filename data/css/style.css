@@ -1,1 +1,36 @@
 .red{color: rgb(223, 37, 36)}
+.hide{display: none}
+.modal{
+    position: absolute;
+    top: 25%;
+    width: 300px;
+    height: 150px;
+    left: calc(100% / 2 - 150px);
+    background-color: #fff;
+
+    border-radius: 10px;
+
+    -webkit-box-shadow: 10px 20px 35px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 20px 35px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 20px 35px 0px rgba(0,0,0,0.75);
+
+    font-size: 14px;
+    line-height: 18px;
+
+    padding: 20px 30px;
+}
+
+.modal_title{
+    float: left;
+    width: 290px;
+    font-weight: bold;
+}
+.modal_close{
+    float: left;
+    width: 10px;
+    color: grey;
+}
+
+.modal_text{
+    margin-top: 30px;
+}
