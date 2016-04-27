@@ -34,5 +34,3 @@ pageMod.PageMod({
         track_plus_new_version: new_version
     }
 });
-
-console.log('Track+ for Trello was load');

@@ -2,14 +2,16 @@
  * Created by carlos on 8/01/16.
  */
 
-console.log('Pluggin start');
-
 //set preferences
 var track_plus_image = self.options.image_url;
 var track_plus_url = self.options.track_plus_url;
 var track_plus_pattern = self.options.track_plus_pattern;
 var track_plus_new_version = self.options.track_plus_new_version;
 var debug = false;
+
+if (debug) {
+    console.log('Pluggin start');
+}
 
 
 var TP_TRELLO_SETTINGS = (function () {
@@ -183,7 +185,6 @@ var TP_TRELLO = (function () {
         if (debug)
             console.log('init complete');
 
-        console.log('asdf:' + new_version);
         if (new_version) {
             showPopUpNewVersion();
         }
