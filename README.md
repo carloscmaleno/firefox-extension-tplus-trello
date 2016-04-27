@@ -11,7 +11,7 @@ If you want to change how the add-on search all Track+'s numbers, you can go to 
 ----------
 Screenshots
 -------------
-Examble before installing the add-on:
+Example before installing the add-on:
 
 ![before](https://addons.cdn.mozilla.net/user-media/previews/thumbs/171/171046.png)
 
