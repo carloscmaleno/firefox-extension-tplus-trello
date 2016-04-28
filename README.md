@@ -26,7 +26,8 @@ Configuration:
 ![configuration](https://addons.cdn.mozilla.net/user-media/previews/full/171/171048.png)
 
 # Release History
-* 2016-04-27 - Refactor message when new version.
+* 2016-04-28 - Hide total cards when there are empty.
+* 2016-04-27 - Refactor new version message.
 * 2016-04-26 - Show project website when new version for show new features.
 * 2016-04-25 - Fix: Exception when create a new card + Show total cards on each List
 * 2016-04-24 - Fix: Task with parenthesis are ignored

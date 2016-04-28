@@ -266,11 +266,13 @@ var TP_TRELLO = (function () {
                 counter[0].parentNode.removeChild(counter[0]);
             }
 
-            var span = document.createElement('span');
-            span.className = 'list-header-extras-subscribe red track-plus-counter';
-            span.appendChild(document.createTextNode(cards_count.length));
+            if (cards_count.length > 0) {
+                var span = document.createElement('span');
+                span.className = 'list-header-extras-subscribe red track-plus-counter';
+                span.appendChild(document.createTextNode(cards_count.length));
 
-            title.appendChild(span);
+                title.appendChild(span);
+            }
         }
 
 
