@@ -26,5 +26,14 @@ Configuration:
 ![configuration](https://lh3.googleusercontent.com/cBfjqsgNGuZMJEOqdhpF9cBigpuEE5fjqfTfd1KIZHWQjaRbAhnkqmKTEwRomk1OCMrX0U_z=s220-h140-e365)
 
 
+# Release History
+* 2016-04-28 - Hide total cards when there are empty.
+* 2016-04-27 - Refactor new version message.
+* 2016-04-26 - Show project website when new version for show new features.
+* 2016-04-25 - Fix: Exception when create a new card + Show total cards on each List
+* 2016-04-24 - Fix: Task with parenthesis are ignored
+* 2016-04-16 - Ignore numbers into parenthesis
+* 2016-01-08 - First stable version 
+
 ----------
 ## [if you liked, invite me a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
