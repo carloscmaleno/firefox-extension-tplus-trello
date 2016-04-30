@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
   "name": "tplus-trello",
-  "version": "0.0.3",
+  "version": "0.1.6",
   "description": "Helper to work with Track+ and Trello",
   "icons": {"300": "images/logo.png"},
   "content_scripts": [
     {
-      "matches": ["https://trello.com/b/*"],
-      "js": ["data/js/functions.js"]
+      "matches": ["https://trello.com/*"],
+      "js": ["data/js/functions.js"],
+      "css": ["data/css/style.css"]
     }
   ],
   "browser_action": {

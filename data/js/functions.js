@@ -2,22 +2,78 @@
  * Created by carlos on 8/01/16.
  */
 
-console.log('Pluggin start');
-
 //set preferences
 var track_plus_image = chrome.extension.getURL("data/img/icon_badge.ico");
 var track_plus_url;
 var track_plus_pattern;
+var track_plus_new_version = false;
+var debug = false;
+
 var wait = true;
+var current_version = chrome.runtime.getManifest().version;
+var installed_version;
 
 chrome.storage.sync.get({
     track_plus_url: '',
-    track_plus_pattern: 0
+    track_plus_pattern: 0,
+    track_plus_version: "0"
 }, function (items) {
     track_plus_url = items.track_plus_url;
     track_plus_pattern = items.track_plus_pattern;
     wait = false;
+
+    installed_version = items.track_plus_version;
+    if (versionCompare(installed_version, current_version) < 0) {
+        chrome.storage.sync.set({'track_plus_version': current_version});
+        track_plus_new_version = true;
+    }
 });
+
+if (debug) {
+    console.log('Pluggin start');
+}
+
+
+var TP_TRELLO_SETTINGS = (function () {
+
+    var NUMBER_START_WITH = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
+    var NUMBER_START_END_WITH = /#[0-9]+#/;
+    var NUMBER_ALL = /\d{2,}(?!\d*\))/;
+
+    var getExpression = function (option) {
+
+        switch (option) {
+            case 1:
+                pattern = NUMBER_START_WITH;
+                break;
+            case 2:
+                pattern = NUMBER_START_END_WITH;
+                break;
+
+            default:
+                pattern = NUMBER_ALL;
+                break;
+        }
+
+        return pattern;
+    };
+
+    var getAllExpression = function () {
+        return {
+            0: NUMBER_ALL,
+            1: NUMBER_START_WITH,
+            2: NUMBER_START_END_WITH
+        };
+    };
+
+    // ==================
+    // PUBLIC METHODS
+    // ==================
+    return {
+        getExpression: getExpression,
+        getAllExpression: getAllExpression
+    }
+})();
 
 //addon
 var TP_TRELLO = (function () {
@@ -47,7 +103,8 @@ var TP_TRELLO = (function () {
      * @param card
      */
     var addClickEvent = function (card) {
-        console.log('Task: ClickEvent');
+        if (debug)
+            console.log('Task: ClickEvent');
 
         card.addEventListener('click', function () {
 
@@ -66,7 +123,8 @@ var TP_TRELLO = (function () {
      * @param id Track+ ID
      */
     var addBox = function (card, id) {
-        //console.log('Task: Addbox');
+        if (debug)
+            console.log('Task: Addbox');
 
         var node = document.createElement("div");
         node.className = 'badge is-icon-only tpt-badge';
@@ -91,14 +149,20 @@ var TP_TRELLO = (function () {
      * Find all cards and add icon + click event.
      */
     var replaceWithBox = function () {
-        //console.log('Task: Replace');
+        if (debug)
+            console.log('Task: Replace');
 
         var cards = document.getElementsByClassName('list-card-title');
+        var are_new = false;
 
         for (var i = 0; i < cards.length; i++) {
             var text = cards[i].innerHTML;
-            var span_remove = cards[i].getElementsByTagName('span')[0].innerHTML;
-            text = text.replace(span_remove, "");
+            var span_remove = cards[i].getElementsByClassName('card-short-id');
+
+            //remove text: Nº xxx
+            if (span_remove.length > 0) { //skip if are new
+                text = text.replace(span_remove[0].innerHTML, "");
+            }
 
             if ((cards[i].className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
                 var id = pattern.exec(text)[0];
@@ -106,8 +170,15 @@ var TP_TRELLO = (function () {
                 id = id.replace('#', '');
                 addBox(cards[i], id);
                 addClickEvent(cards[i]);
+
+                are_new = true;
             }
         }
+
+        if (are_new) {
+            addLabelCountCards();
+        }
+
         addListener();
     };
 
@@ -116,32 +187,27 @@ var TP_TRELLO = (function () {
      * @param image
      * @param tp_url
      * @param option_pattern
+     * @param new_version
      */
-    var init = function (image, tp_url, option_pattern) {
-        console.log('Task: Init '+ option_pattern);
+    var init = function (image, tp_url, option_pattern, new_version) {
+        if (debug)
+            console.log('Task: Init');
 
         image_url = image;
         url = tp_url;
         pattern_option = option_pattern;
 
-        switch (option_pattern) {
-
-            case '1':
-                pattern = /(#[0-9]+\s)|(#[0-9]+(\s)?$)/;
-                break;
-            case '2':
-                pattern = /#[0-9]+#/;
-                break;
-
-            default:
-                pattern = /\d{2,}(?!.*\))/;
-                break;
-        }
+        pattern = TP_TRELLO_SETTINGS.getExpression(option_pattern);
 
         addStatus();
         replaceWithBox();
 
-        console.log('init complete');
+        if (debug)
+            console.log('init complete');
+
+        if (new_version) {
+            showPopUpNewVersion();
+        }
     };
 
     /**
@@ -149,7 +215,8 @@ var TP_TRELLO = (function () {
      * @param id
      */
     var showLinkButton = function (id) {
-        console.log('Task: showLink');
+        if (debug)
+            console.log('Task: showLink');
 
         var img = document.createElement("img");
         img.setAttribute("src", image_url);
@@ -172,7 +239,8 @@ var TP_TRELLO = (function () {
      * Waiting to new cards for add Icon
      */
     var addListener = function () {
-        console.log('Task: Listener');
+        if (debug)
+            console.log('Task: Listener');
 
         setTimeout(function () {
             replaceWithBox();
@@ -203,13 +271,80 @@ var TP_TRELLO = (function () {
         toolbar.appendChild(a);
     };
 
+    var addLabelCountCards = function () {
+
+        if (debug)
+            console.log('Task: LabelCount');
+
+        var list = document.getElementsByClassName('list');
+        for (var key = 0; key < list.length; key++) {
+            var cards_count = list[key].getElementsByClassName('track-plus-card');
+            var title = list[key].getElementsByClassName('list-header-extras')[0];
+            var counter = list[key].getElementsByClassName('track-plus-counter');
+
+            if (counter.length > 0) {
+                counter[0].parentNode.removeChild(counter[0]);
+            }
+
+            if (cards_count.length > 0) {
+                var span = document.createElement('span');
+                span.className = 'list-header-extras-subscribe red track-plus-counter';
+                span.appendChild(document.createTextNode(cards_count.length));
+
+                title.appendChild(span);
+            }
+        }
+
+
+    };
+
+    var showPopUpNewVersion = function () {
+        if (debug)
+            console.log('Task: Show popup');
+        var modal = document.createElement('div');
+        modal.className = "modal";
+        var title = document.createElement('div');
+        title.className = 'modal_title';
+        title.appendChild(document.createTextNode('New version has been installed'));
+        var close = document.createElement('div');
+        close.className = 'modal_close';
+        close.appendChild(document.createTextNode('X'));
+        var message = document.createElement('div');
+        message.className = 'modal_text';
+        message.appendChild(document.createTextNode('Thanks for use it.'));
+
+        var p = document.createElement('p');
+        p.appendChild(document.createTextNode('The plugin Track+ for Trello has been update to the last version.'));
+        message.appendChild(p);
+        p = document.createElement('p');
+        p.appendChild(document.createTextNode('If you want to know the new features and bug fixed visit the '));
+        var a = document.createElement('a');
+        a.setAttribute('target', '_blank');
+        a.setAttribute('href', 'https://github.com/carloscmaleno/firefox-extension-tplus-trello#-track-pluggin-for-trello');
+        a.appendChild(document.createTextNode('project webpage'));
+        p.appendChild(a);
+        p.appendChild(document.createTextNode('.'));
+
+        message.appendChild(p);
+
+        modal.appendChild(title);
+        modal.appendChild(close);
+        modal.appendChild(message);
+
+        modal.addEventListener('click', function () {
+            document.getElementsByClassName('modal')[0].className += "hide";
+        });
+        document.getElementsByTagName('body')[0].appendChild(modal);
+    };
+
     // ==================
     // PUBLIC METHODS
     // ==================
     return {
         init: init,
         showLinkButton: showLinkButton,
-        changeUrl: changeUrl
+        changeUrl: changeUrl,
+        showPopUpNewVersion: showPopUpNewVersion
     }
 })();
 
@@ -220,12 +355,62 @@ autoload();
 function autoload() {
     var cards = document.getElementsByClassName('list-card-title');
     if (cards.length == 0 || wait) {
-        console.log('Wait');
+        if (debug)
+            console.log('Wait');
         setTimeout(function () {
             autoload();
         }, 500);
     } else {
-        console.log('Start');
-        TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern);
+        if (debug)
+            console.log('Start');
+
+        TP_TRELLO.init(track_plus_image, track_plus_url, track_plus_pattern, track_plus_new_version);
     }
+}
+
+function versionCompare(v1, v2, options) {
+    var lexicographical = options && options.lexicographical,
+        zeroExtend = options && options.zeroExtend,
+        v1parts = v1.split('.'),
+        v2parts = v2.split('.');
+
+    function isValidPart(x) {
+        return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
+    }
+
+    if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
+        return NaN;
+    }
+
+    if (zeroExtend) {
+        while (v1parts.length < v2parts.length) v1parts.push("0");
+        while (v2parts.length < v1parts.length) v2parts.push("0");
+    }
+
+    if (!lexicographical) {
+        v1parts = v1parts.map(Number);
+        v2parts = v2parts.map(Number);
+    }
+
+    for (var i = 0; i < v1parts.length; ++i) {
+        if (v2parts.length == i) {
+            return 1;
+        }
+
+        if (v1parts[i] == v2parts[i]) {
+            continue;
+        }
+        else if (v1parts[i] > v2parts[i]) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    if (v1parts.length != v2parts.length) {
+        return -1;
+    }
+
+    return 0;
 }
