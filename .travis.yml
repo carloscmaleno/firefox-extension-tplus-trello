@@ -11,7 +11,7 @@ before_script:
   - npm install jpm -g
   - npm install mozilla-download -g
   - cd ..
-  - mozilla-download --branch mozilla-central -c prerelease firefox
+  - mozilla-download --branch mozilla-central
   - cd $TRAVIS_BUILD_DIR
 
 script:
