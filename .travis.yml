@@ -16,4 +16,4 @@ before_script:
 
 script:
   - export JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/../firefox/firefox
-  - jpm test -v
+  - jpm test -v -b firefox/firefox/firefox-bin
