@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <span class="badge-patreon"><a href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Donate button" /></a></span>
+
 ![enter image description here](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Pluggin for Trello
 ===================
 > **Install free** from [Firefox Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/track-pluggin-for-trello/)
