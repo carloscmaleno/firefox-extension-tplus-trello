@@ -10,7 +10,7 @@ Create buttons on your cards so that you have quick access to your tasks and do 
 
 If you want to change how the add-on search all Track+'s numbers, you can go to <i class="icon-cog"></i> **Settings**  -> **Extensions** dialog and click on *Configuration* button and choose one option.
 
-> Looking for other browser? <a href="https://github.com/carloscmaleno/firefox-extension-tplus-trello" title="other"><img src="http://static.carloscoronado.me/img/firefox_32.png" alt="firefox" /></a>
+> Looking for other browser? <a href="https://github.com/carloscmaleno/firefox-extension-tplus-trello" title="firefox"><img src="http://static.carloscoronado.me/img/firefox_32.png" alt="firefox" /></a>
 
 ----------
 Screenshots
