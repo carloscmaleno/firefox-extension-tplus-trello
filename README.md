@@ -11,7 +11,7 @@ Create buttons on your cards so that you have quick access to your tasks and do 
 
 If you want to change how the add-on search all Track+'s numbers, you can go to <i class="icon-cog"></i> **Settings**  -> **Add-ons** dialog and click on *Configuration* button and choose one option.
 
-> Looking for other browser? <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Donate"><img src="http://static.carloscoronado.me/img/chrome_32.png" alt="Donate button" /></a> <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Donate"><img src="http://static.carloscoronado.me/img/opera_32.png" alt="Donate button" /></a>
+> Looking for other browser? <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Chrome"><img src="http://static.carloscoronado.me/img/chrome_32.png" alt="chrome" /></a> <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Opera"><img src="http://static.carloscoronado.me/img/opera_32.png" alt="opera" /></a>
 
 ----------
 Screenshots
