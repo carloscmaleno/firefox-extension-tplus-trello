@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <span class="badge-patreon"><a href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Donate button" /></a></span>
+[![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <a target="_blank" href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="http://static.carloscoronado.me/img/paypal_donate.png" alt="Donate button" /></a>
 
-![enter image description here](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Pluggin for Trello
+
+![logo](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Pluggin for Trello
 ===================
 > **Install free** from [Firefox Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/track-pluggin-for-trello/)
 
@@ -9,6 +10,8 @@ This add-on will help you adding links for your work with Track + Trello and bec
 Create buttons on your cards so that you have quick access to your tasks and do not waste time doing <kbd>Ctrl+ C</kbd> and <kbd>Ctrl + V</kbd> from side to side.
 
 If you want to change how the add-on search all Track+'s numbers, you can go to <i class="icon-cog"></i> **Settings**  -> **Add-ons** dialog and click on *Configuration* button and choose one option.
+
+> Looking for other browser? <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Donate"><img src="http://static.carloscoronado.me/img/chrome_32.png" alt="Donate button" /></a> <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Donate"><img src="http://static.carloscoronado.me/img/opera_32.png" alt="Donate button" /></a>
 
 ----------
 Screenshots
