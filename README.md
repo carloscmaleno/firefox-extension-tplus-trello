@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <a target="_blank" href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="http://static.carloscoronado.me/img/paypal_donate.png" alt="Donate button" /></a>
+
 ![enter image description here](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Extension for Trello
 ===================
 > **Install free** from [Chrome Store](https://chrome.google.com/webstore/) *(Coming Soon)*
@@ -7,6 +9,8 @@ This extension will help you adding links for your work with Track + Trello and 
 Create buttons on your cards so that you have quick access to your tasks and do not waste time doing <kbd>Ctrl+ C</kbd> and <kbd>Ctrl + V</kbd> from side to side.
 
 If you want to change how the add-on search all Track+'s numbers, you can go to <i class="icon-cog"></i> **Settings**  -> **Extensions** dialog and click on *Configuration* button and choose one option.
+
+> Looking for other browser? <a href="https://github.com/carloscmaleno/chrome-extension-tplus-trello" title="Donate"><img src="http://static.carloscoronado.me/img/firefox_32.png" alt="Donate button" /></a>
 
 ----------
 Screenshots
