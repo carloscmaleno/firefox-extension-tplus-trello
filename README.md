@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <a target="_blank" href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="http://static.carloscoronado.me/img/paypal_donate.png" alt="Donate button" /></a>
+[![Code Climate](https://codeclimate.com/github/carloscmaleno/firefox-extension-tplus-trello/badges/gpa.svg)](https://codeclimate.com/github/carloscmaleno/firefox-extension-tplus-trello) [![Build Status](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello.svg?branch=master)](https://travis-ci.org/carloscmaleno/firefox-extension-tplus-trello)  <a target="_blank" href="https://www.paypal.me/CarlosCoronadoMaleno/1" title="Donate"><img src="http://static.carloscoronado.me/img/paypal_donate.png" alt="Donate button" /></a>
 
 
 ![logo](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Pluggin for Trello
