@@ -152,7 +152,7 @@ var TP_TRELLO = (function () {
         if (debug)
             console.log('Task: Replace');
 
-        var cards = document.getElementsByClassName('list-card-title');
+        var cards = document.getElementsByClassName('list-card-details');
         var are_new = false;
 
         for (var i = 0; i < cards.length; i++) {
@@ -353,7 +353,7 @@ var TP_TRELLO = (function () {
 autoload();
 
 function autoload() {
-    var cards = document.getElementsByClassName('list-card-title');
+    var cards = document.getElementsByClassName('list-card-details');
     if (cards.length == 0 || wait) {
         if (debug)
             console.log('Wait');
