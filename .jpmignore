@@ -11,3 +11,6 @@ firefox
 #exclude test
 .travis.yml
 test
+
+#exclude makefile
+makefile.sh
