@@ -31,6 +31,7 @@ Configuration:
 
 
 # Release History
+* 2017-08-11 - Fix bug when clicking outside the title card (Thanks @sobitoks)
 * 2016-04-28 - Hide total cards when there are empty.
 * 2016-04-27 - Refactor new version message.
 * 2016-04-26 - Show project website when new version for show new features.
