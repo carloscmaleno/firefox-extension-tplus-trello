@@ -88,7 +88,7 @@ var TP_TRELLO = (function () {
 
         card.addEventListener('click', function () {
 
-            var id = card.dataset.tpt_id;
+            var id = card.getElementsByClassName('list-card-title')[0].dataset.tpt_id;
             setTimeout(function () {
                 TP_TRELLO.showLinkButton(id);   // <------ PETA cuando arrastras una tarjeta, lo interpreta como un click normal
             }, 500);
@@ -132,11 +132,12 @@ var TP_TRELLO = (function () {
         if (debug)
             console.log('Task: Replace');
 
-        var cards = document.getElementsByClassName('list-card-title');
+        var cards = document.getElementsByClassName('list-card-details');
         var are_new = false;
 
         for (var i = 0; i < cards.length; i++) {
-            var text = cards[i].innerHTML;
+            var card_title = cards[i].getElementsByClassName('list-card-title')[0];
+            var text = card_title.innerHTML;
             var span_remove = cards[i].getElementsByClassName('card-short-id');
 
             //remove text: Nº xxx
@@ -144,11 +145,11 @@ var TP_TRELLO = (function () {
                 text = text.replace(span_remove[0].innerHTML, "");
             }
 
-            if ((cards[i].className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
+            if ((card_title.className.indexOf('track-plus-card') == -1) && (text.match(pattern))) {
                 var id = pattern.exec(text)[0];
                 id = id.replace('#', '');
                 id = id.replace('#', '');
-                addBox(cards[i], id);
+                addBox(card_title, id);
                 addClickEvent(cards[i]);
 
                 are_new = true;
@@ -333,7 +334,7 @@ var TP_TRELLO = (function () {
 autoload();
 
 function autoload() {
-    var cards = document.getElementsByClassName('list-card-title');
+    var cards = document.getElementsByClassName('list-card-details');
     if (cards.length == 0) {
         if (debug)
             console.log('Wait');
