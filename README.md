@@ -31,6 +31,7 @@ Configuration:
 ![configuration](https://addons.cdn.mozilla.net/user-media/previews/full/171/171048.png)
 
 # Release History
+* 2017-08-11 - Fix bug when clicking outside the title card (Thanks @sobitoks)
 * 2016-04-28 - Hide total cards when there are empty.
 * 2016-04-27 - Refactor new version message.
 * 2016-04-26 - Show project website when new version for show new features.
@@ -40,4 +41,4 @@ Configuration:
 * 2016-01-08 - First stable version 
 
 ----------
-## [if you liked, invite me a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
+## [if you like it, invite me a coffee](https://www.paypal.me/CarlosCoronadoMaleno/1) ##
