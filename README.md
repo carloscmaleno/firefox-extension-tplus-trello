@@ -2,7 +2,7 @@
 
 ![enter image description here](https://addons.cdn.mozilla.net/user-media/addon_icons/679/679595-64.png) Track+ Extension for Trello
 ===================
-> **Install free** from [Chrome Store](https://chrome.google.com/webstore/) *(Coming Soon)*
+> **Install free** from [Chrome Store](https://chrome.google.com/webstore/detail/tplus-trello/giehbcgcleclmfeccgodkebbcaobamoc) or [Opera Store](https://addons.opera.com/es/extensions/details/track-and-trello-extension/)
 
 This extension will help you adding links for your work with Track + Trello and become more agile.
 
@@ -11,6 +11,7 @@ Create buttons on your cards so that you have quick access to your tasks and do 
 If you want to change how the add-on search all Track+'s numbers, you can go to <i class="icon-cog"></i> **Settings**  -> **Extensions** dialog and click on *Configuration* button and choose one option.
 
 > Looking for other browser? <a href="https://github.com/carloscmaleno/firefox-extension-tplus-trello" title="firefox"><img src="http://static.carloscoronado.me/img/firefox_32.png" alt="firefox" /></a>
+
 
 ----------
 Screenshots
