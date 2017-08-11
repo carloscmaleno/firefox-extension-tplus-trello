@@ -12,6 +12,9 @@
   "keywords": [
     "trello, track+"
   ],
+  "permissions": {
+    "multiprocess": true
+  },
   "preferences": [
     {
       "name": "track_plus_url",
