@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "tplus-trello",
-  "version": "0.1.6",
+  "name": "Track+ for Trello",
+  "version": "0.1.7",
   "description": "Helper to work with Track+ and Trello",
   "icons": {"300": "images/logo.png"},
   "content_scripts": [
@@ -14,7 +14,7 @@
   "browser_action": {
     "default_icon": "images/logo.png"
   },
-  "homepage_url": "http://github.com/carloscmaleno",
+  "homepage_url": "https://github.com/carloscmaleno/chrome-extension-tplus-trello",
   "options_page": "options.html",
   "options_ui": {
     "chrome_style": true,
